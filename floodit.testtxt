@@ -1,0 +1,477 @@
+Test Documentation for CS 246 Assignment 4 Question 1b
+Student Name: 	Mingyuan Li
+Student ID  :	20571774
+Description : 	This is a test documentation for assignment 4 
+				Question 1b. Floodit is a program that checks
+				te
+
+***************************** TEST COMMAND LINE ARUGMENT TYPE *****************************
+GENERAL DESCRIPTION:
+	This sections test command line arguments. It checks if the pogram can
+	read in correct arguments and prompt if the arguments is invalid
+
+LIST OF CASES
+	CASE 1: 	No arguments (default case)								\\ base case
+	CASE 2: 	Argument with size only 								\\ base case
+	CASE 3: 	Argument with moves only								\\ base case
+	CASE 4: 	Argument with seed only 								\\ base case
+	CASE 5: 	Arguments with size moves and seed 						\\ base case
+	CASE 6: 	Arguments with duplicated prompts (calling twice)		\\ base case
+	CASE 7: 	Argument wiht different order							\\ base case 
+ 
+CASE 1: 		invoke without any argument 
+				and expects the program to intialize grid with
+				10X10 and 20 moves
+INPUT: 			<nothing>
+OUTPUT: 		0410031001
+				0432030414
+				3232224140
+				2001031233
+				4412413201
+				2224120042
+				2301404223
+				2402131024
+				3030404332
+				2030333010
+				20 moves left
+
+CASE 2: 		invoke with size arugment only
+				and expects the program to initialize 
+				with a grid of 2x2 and 20 moves 
+INPUT: 			./floodit -size 2
+OUTPUT: 		332
+				214
+				033
+				20 moves left
+
+CASE 3: 		invoke with moves arugment only
+				and expects the program to initialize 
+				with a grid of 10x10 and 2 moves
+INPUT: 			./floodit -moves 2
+OUTPUT: 		0004200101
+				0310422102
+				4234202433
+				0442043442
+				2313213211
+				4030231114
+				1124031143
+				1142101230
+				0100130200
+				1241034414
+				2 moves left
+
+CASE 4: 		invoke with seed argument only
+				and expects the program to initialize
+				with a grid of 10x10 and 20 moves
+INPUT: 			./floodit -seed 1
+OUTPUT:			4123422124
+				4421214121
+				3234204314
+				4241331314
+				4410340321
+				4114030201
+				1000341111
+				2012341331
+				2330141413
+				0012443231
+				20 moves left
+
+CASE 5: 		invoke with several argument 
+				include size move seed
+				and expects the program to intialize
+				with a grid and moves based on user input
+INPUT:			./floodit -size 3 -moves 5 -seed 4
+OUTPUT:			130
+				123
+				010
+				5 moves left
+
+CASE 6: 		invoke with duplicated arguments
+				(calling size three times in this case)
+				and expects the program to initialize
+				with a grid and moves based on user last input
+INPUT:			./floodit -size 3 -size 4 -size 5
+OUTPUT:			11000
+				14300
+				44101
+				34214
+				24032
+				20 moves left
+
+CASE 7: 		invoke with arguments that are in different order
+				and expects the program to intialize program as user input
+INPUT:			./floodit -moves 5 -seed 5 -size 5
+OUTPUT:			04213
+				02424
+				33121
+				00103
+				34102
+				5 moves left
+
+CASE 8: 		invoke with no argument after arugment prompt
+				and expects the program to output error message
+INPUT: 			./floodit -size
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 		
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+CASE 9: 		invoke with invalid arugment prompt
+				and expects the program to output error message
+INPUT:			 ./floodit -sizses 3
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 		
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+CASE 10: 		invoke with arugment as not a number
+				and expects the program to output error message
+INPUT: 			./floodit -size ss
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 		
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+******************** TEST INTIALIZED MODE SET **********************
+GENERAL DESCRIPTION: 	
+	This sections test if the program is able to ouput the correct 
+	grid based on the user input. There are base, small and large cases.
+
+LIST OF CASES
+	CASE 1: 	small size input 						\\ small case
+	CASE 2: 	normal size input 						\\ base case 
+	CASE 3: 	large size input 						\\ large case
+	CASE 4: 	small moves input 						\\ small case
+	CASE 5: 	normal moves input 						\\ base case
+	CASE 6:     large moves input 						\\ large case
+	CASE 7: 	normal seed input 						\\ base case
+	CASE 8: 	boundary size number (less then 2)		\\ boundary case
+	CASE 9: 	boundary moves number (less than 1)		\\ boundary case
+	CASE 10: 	boundary seed number (less than 1)		\\ boundary case
+
+CASE 1: 		invoke with argument size as of 2 (small case). 
+				and expected intialized a grid with 2X2
+INPUT: 			./floodit -size 2
+OUTPUT: 		44
+				20
+				20 moves left
+
+CASE 2: 		invoke with argument size as of 2 (small case). 
+				and expected intialized a grid with 4X4
+INPUT: 			./floodit -size 4
+OUTPUT: 		2323
+				0431
+				4023
+				0142
+				20 moves left
+
+CASE 3: 		invoke with argument size as of 30 (large case)
+				and expected the program to initialize a grid with 30X30
+INPUT: 			./floodit -size 300
+OUTPUT: 		401121324424444001302141321323
+				133114224400441322111233213144
+				143042443302022041142230143230
+				144110210233041423111244112430
+				444102341233321134434001343403
+				413422040023130420102020012431
+				101341044432222202100043324443
+				004100423103321420313202313033
+				122122333431311110142421201420
+				133441012002400422044323304212
+				233310431311114210301413034201
+				021434223122210313214142023101
+				130024420034342420232201240230
+				023204300144200401230424301034
+				040234204014123142422133341230
+				130400324013123040301323400043
+				223133144222002333104040444103
+				303101343340220041312030203224
+				432134242214404242020412234001
+				010420004103300204241034031200
+				414220120014204130333122003242
+				024333311102432312312014223404
+				122421333143310024000312203141
+				311431044440411223433431023434
+				434114423323212133414224241213
+				120322134212214432322213420314
+				004412033220213121233441231020
+				132140144324334243342202314041
+				420211031322330340240211443103
+				402032124343000240440413202432
+				30 moves left
+
+CASE 4:		invoke with argument moves as of 1 (small case)
+			and expected program to set moves as 1
+INTPUT: 		./floodit -moves 1
+OUTPUT: 		4443243112
+				4131003344
+				2003114424
+				2124424312
+				2212112314
+				4400301444
+				4113021023
+				3222204214
+				4004000011
+				2214334233
+				1 move left
+
+CASE 5:		invoke with argument moves as of 10 (base case)
+			and expected program to set moves as 10
+INTPUT: 		./floodit -moves 10
+OUTPUT: 		4443243112
+				4131003344
+				2003114424
+				2124424312
+				2212112314
+				4400301444
+				4113021023
+				3222204214
+				4004000011
+				2214334233
+				10 move left
+
+CASE 6: 		invoke with argument moves as of 100 (large case)
+				and expected program to set moves 100
+INPUT: 			./floodit -move 100
+OUTPUT: 		4144333211
+				0131214030
+				1220434011
+				2241030241
+				0044334402
+				1211244230
+				1313402224
+				4232033210
+				0432400300
+				3004132201
+				100 moves left
+
+CASE 7: 		invoke with arguments seed as of 5 (base case)
+				and expects the program to set mode as when seed of 5
+INPUT:			./floodit -seed 5
+OUTPUT:			0421302424
+				3312100103
+				3410214444
+				1103110143
+				4144104342
+				2214443423
+				0041310143
+				3120302120
+				3240334120
+				3224032034
+				20 moves left
+
+CASE 8: 		invoke with argument size of 1 (less than 2)
+				 and expects the program to output error message
+INPUT: 			./floodit -size 1
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 				
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+CASE 9: 		invoke with argument moves of 0 (less than 1)
+				and expects the progrma to output error message
+INPUT: 			./floodit -moves 0
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 				
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+CASE 10: 		invoke with arugment seed of 0 (less than 1)
+				and expects the program to output error message
+INPUT:			./floodit -seed 0	
+OUTPUT:			Usage: ./floodit-sample [ -size N (width and height of game ) >= 2) ] 				
+				| [ -moves M (number of moves until game is over) >= 1) ] 
+				| [ -seed S (seed for random-number generator (1..INT_MAX)) ]
+
+***************************** CASE FOR INPUT STATE TYPE *******************************
+GENERAL DESCRIPTION:
+	This section tests base, small, large and large cases based on input of
+	state during the duration of the game
+
+LIST OF CASES
+	CASE 1: Input color is smaller than 0				\\ Boundary case
+	CASE 2: Input color is larger than 4				\\ Boundary case
+	CASE 3: Input color is not a number 				\\ Boundary case
+	CASE 4: Input color is between 0 and 4				\\ Base case
+	CASE 5: Input end by users 							\\ Base case
+	CASE 6: Input color same with original color        \\ Base case
+	CASE 7: Input color different with original color 	\\ Base case
+	CASE 8: Input color unmatched with neighbour		\\ Base case
+	CASE 9: Input moves only 1 left						\\ Boundary case
+	CASE 10: Input moves only 0 left					\\ Boundary case
+	CASE 11: Input moves greater than 1 left			\\ Boundary case
+
+	All the cases will uses the following case as an example
+	INPUT: -size 3 -moves 3 -seed 3
+	OUTPUT: 201
+			311
+			301
+			3 moves left
+
+Before all tests cases in this section
+Input: ./floodit -size 3 -moves -3 -seed 3b <Enter>
+
+CASE 1: 		Test program when input color is smaller than 0
+				and expects the program to issue error message
+				and continue the game
+INPUT: 			-1
+OUTPUT: 		Invalid move
+
+CASE 2: 		Test program when input color is larger than 4
+				and expects the program to issue error message
+				and continue the game
+INPUT: 			5
+OUTPUT: 		Invalid move
+
+CASE 3: 		Test program when input is is not a number
+				and expects the program to issue error message
+				and continue the game
+INPUT: 			blah
+OUTPUT: 		Invalid move
+
+CASE 4: 		Test program when input is ended by use
+				and expects the program ends normally
+INPUT: 			^C
+OUTPUT: 		<program end>
+
+CASE 5: 		Test program when input color is between 0 and 4
+				and expects output changed grid and n-1 moves left
+INPUT: 			0
+OUTPUT: 		001
+				311
+				301
+				2 moves left
+
+CASE 6: 		Test program when input color same with original color
+				and expects the output changes to n-1 moves left
+INPUT: 			2
+OUTPUT:			201
+				311
+				301
+				2 moves left
+
+CASE 7: 		Test program when color different with original color
+				and expects the output changes color and n-1 moves left
+INPUT:			0
+OUTPUT:			001
+				311
+				301
+				2 moves left
+
+CASE 8: 		Test program when color unmatched with neighbours
+				and expects the output changes its color and n-1 moves
+				but its neighbours do not change
+INPUT:			4
+OUTPUT:			401
+				311
+				301
+				2 moves left
+
+CASE 9: 		Test program grid only have 1 moves left
+				and program is expected to print
+				"1 move left" (after grid invoked)
+INPUT:			2 0
+OUTPUT: 		...
+				311
+				301
+				1 move left
+
+CASE 10: 		Test program when grid only have 0 moves left
+				and program is expected to output
+				"0 moves left"
+INPUT:			2 0 1
+OUTPUT:			111
+				311
+				301
+				0 moves left
+
+CASE 11: 		Test program when grid have more than 2 moves left
+				and program is expected to output
+				"x moves left"
+INPUT: 			2
+OUTPUT:			201
+				311
+				301
+				2 moves left
+
+****************************** CASE FOR ENDING MODE ******************************
+GENERAL DESCRIPTION:
+	This sections describes result modes to see if the program 
+	ends normally and correctly.
+
+LIST OF CASES
+	CASE 1: user wins (moves > 0 but all color same)	\\ base case
+	CASE 2: user wins (move = 0 and all color same)		\\ base case
+	CASE 3: user lost (move = 0 and all color different)\\ Base case
+
+	All the cases will uses the following case as an example
+	INPUT: -size 2 -moves 5 -seed 3
+	OUTPUT: 20
+			13
+			5 moves left
+
+CASE 1: 	 	When moves greater than 0 and 
+				all colors changed to same state
+				test if the program print prompt and
+				ends the program normally (won)
+INPUT: 			1 0 3
+OUTPUT: 		10
+				13
+				4 moves left
+				
+				00
+				03
+				3 moves left
+				
+				33
+				33
+				2 moves left
+				Won
+
+CASE 2: 	 	When moves equal to 0 and 
+				all colors changed to same state
+				test if the program print prompt and
+				ends the program normally (won)
+INPUT: 			2 2 1 0 3
+OUTPUT: 		20
+				13
+				4 moves left
+				
+				20
+				13
+				3 moves left
+				
+				10
+				13
+				2 moves left
+				
+				00
+				03
+				1 move left
+				
+				33
+				33
+				0 moves left
+				Won
+
+CASE 3: 	 	When moves equal to 0 but
+				there are still colors on grid different
+				test if the program print prompt and
+				ends the program normally (lost)
+INPUT: 			2 2 2 2 2
+OUTPUT: 		20
+				13
+				4 moves left
+				
+				20
+				13
+				3 moves left
+				
+				20
+				13
+				2 moves left
+				
+				20
+				13
+				1 move left
+				
+				20
+				13
+				0 moves left
+				Lost
+
